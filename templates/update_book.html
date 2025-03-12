@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Update Book</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.publish_date.label(class="form-label") }}
+            {{ form.publish_date(class="form-control", type="date") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.price.label(class="form-label") }}
+            {{ form.price(class="form-control", type="number", step="0.01") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.appropriate.label(class="form-label") }}
+            {{ form.appropriate(class="form-check-input") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.author_id.label(class="form-label") }}
+            {{ form.author_id(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.img.label(class="form-label") }}
+            {{ form.img(class="form-control", type="file") }}
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">Update Book</button>
+    </form>
+</div>
+{% endblock %}

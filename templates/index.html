@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}BOOK LIST{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-primary text-center">BOOK LIST</h1>
+    <hr>
+
+    {% if books %}
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 mt-3">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ url_for('static', filename='uploads/' + book.img) }}" class="card-img-top" alt="{{ book.name }} Cover">
+
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">{{ book.name }}</h4>
+                    <p class="card-text">
+                        By <a href="{{ url_for('author_detail', author_id=book.author.id) }}"
+                            class="text-decoration-none">
+                            {{ book.author.name }}
+                        </a>
+                    </p>
+                    <span class="text-muted">Price: ${{ "%.2f"|format(book.price) }}</span>
+                    <br>
+                    <a href="{{ url_for('book_detail', book_id=book.id) }}" class="btn btn-outline-primary mt-4">
+                        Details
+                    </a>
+                    <a href="{{ url_for('update_book', book_id=book.id) }}" class="btn btn-outline-success mt-4">
+                        Update 
+                    </a>
+                    <form action="{{ url_for('delete_book', book_id=book.id) }}" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger mt-4"
+                            onclick="return confirm('Are you sure you want to delete this book?');">Delete 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center text-muted mt-4">No books available.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fst-italic">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('home') }}">BOOK STORE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">BOOKS LIST</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('authors') }}">Authors LIST</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_author') }}">Add Author</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_book') }}">Add Book</a></li>
+                <div class="b-0" style="margin-left:400px;">
+                    {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="{{ url_for('logout') }}">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+                {% else %}
+                <span class="nav-item">
+                    <a class="nav-link text-light" href="{{ url_for('login') }}">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </span>
+                {% endif %}
+                    </ul>
+            </div>
+        </div>
+    </div>
+</nav>

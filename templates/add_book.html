@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Book - My Library{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="text-center text-primary">Add New Book</h2>
+                    <hr>
+                    <form method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+
+                        <div class="mb-3">
+                            {{ form.name.label(class="form-label fw-bold") }}
+                            {{ form.name(class="form-control", placeholder="Enter book name", required=True) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.publish_date.label(class="form-label fw-bold") }}
+                            {{ form.publish_date(class="form-control", required=True) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.price.label(class="form-label fw-bold") }}
+                            {{ form.price(class="form-control", placeholder="Enter book price", required=True) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.appropriate.label(class="form-label fw-bold") }}
+                            {{ form.appropriate(class="form-select", required=True) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.author_id.label(class="form-label fw-bold") }}
+                            {{ form.author_id(class="form-select", required=True) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.img.label(class="form-label fw-bold") }}
+                            {{ form.img(class="form-control", accept="image/*", required=True) }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg shadow-sm m-auto">
+                           Add Book
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Author Details - {{ author.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-primary text-center">Author Details</h2><hr>
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded w-50 m-auto">
+        <div class="card-body">
+            <h3 class="card-title text-primary text-center"">{{ author.name }}</h3>
+            <p class="card-text text-muted text-center"">Total Books: <strong>{{ author.books | length }}</strong></p>
+
+            {% if author.books %}
+            <h5 class="mt-4 text-secondary">Books by {{ author.name }}:</h5>
+            <ul class="list-group list-group-flush">
+                {% for book in author.books %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('book_detail', book_id=book.id) }}" class="text-decoration-none">
+                        📖 {{ book.name }} ({{ book.publish_date.strftime('%Y') }})
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-danger mt-3">No books added by this author yet.</p>
+            {% endif %}
+            <div class="text-center">
+                <a href="{{ url_for('home') }}" class="btn btn-outline-primary mt-3">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

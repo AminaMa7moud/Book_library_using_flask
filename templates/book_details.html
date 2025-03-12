@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.name }} - Book Details{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='uploads/' + book.img) }}" class="img-fluid rounded-start"
+                    alt="{{ book.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">{{ book.name }}</h2>
+                    <hr>
+                    <p class="card-text"><strong>Publish Date:</strong> {{ book.publish_date.strftime('%Y-%m-%d') }}</p>
+                    <p class="card-text"><strong>Price:</strong> ${{ book.price }}</p>
+                    <p class="card-text"><strong>Appropriate for:</strong> {{ book.appropriate }}</p>
+                    <p class="card-text">
+                        <strong>Author:</strong>
+                        <a href="{{ url_for('author_detail', author_id=book.author.id) }}" class="text-decoration-none">
+                            {{ book.author.name }}
+                        </a>
+                    </p>
+                    <a href="{{ url_for('home') }}" class="btn btn-outline-primary mt-1">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

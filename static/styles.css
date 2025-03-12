@@ -1,0 +1,12 @@
+body {
+    font-family:Tahoma;
+    
+}
+.card img {
+    height: 300px;
+}
+img {
+    object-fit: fill;
+    width: 100%;
+    max-height: 500px;
+}
